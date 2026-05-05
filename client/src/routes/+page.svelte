@@ -14,14 +14,15 @@
     let meals: Meal[] = $state([]);
 
     async function fetchMeals() {
-     const res = await fetch(`${baseUrl}/mensa-garching/today`);
-     if (res.ok) {
-     meals = await res.json();
-     }
+        const res = await fetch(`${baseUrl}/mensa-garching/today`);
+        if (res.ok) {
+            meals = await res.json();
+        }
+    }
 
     // Fetch data once on component mount
     onMount(async () => {
-       await fetchMeals();
+        await fetchMeals();
     });
 </script>
 
@@ -36,12 +37,11 @@
             <p>Loading menu items...</p>
         </div>
     {:else}
-       <!-- TODO add food-grid here -->
-       <div class="food-grid">
+    <div class="food-grid">
         {#each meals as meal}
-        <FoodCard {meal}/>
+            <FoodCard {meal}/>
         {/each}
-        </div>
+    </div>
     {/if}
 
     {#if meals.length === 0 && meals.length > 0}
